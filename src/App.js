@@ -9,17 +9,17 @@ import { AppContainer } from './app.styled.js'
 export default function App() {
   const [user, setUser] = useState()
   const [loggedIn, setLoggedIn] = useState(false)
-  const userData = useLoaderData()
-
-  useEffect(() => {
-    if (userData.loggedIn) {
-      setUser(userData.user)
-      setLoggedIn(true)
-    } else {
-      setUser(() => {{}})
-      setLoggedIn(() => false)
-    }
-  }, [])
+  // const userData = useLoaderData()
+  
+  // useEffect(() => {
+  //   if (userData.loggedIn) {
+  //     setUser(userData.user)
+  //     setLoggedIn(true)
+  //   } else {
+  //     setUser(() => {{}})
+  //     setLoggedIn(() => false)
+  //   }
+  // }, [])
 
   return (
     <>

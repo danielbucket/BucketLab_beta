@@ -4,7 +4,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     port: 4020, // 'port 4020' is the default value assigned at server.js
-    hot: true,
+    // hot: true,
     static: {
       directory: path.resolve(__dirname, 'dist')
     },
