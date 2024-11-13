@@ -32,7 +32,20 @@ app.use('/', (req,res) => {
 })
 
 app.get('/api/v1', router)
-app.get('/api/auth', authRouter)
+// app.get('/api/auth', authRouter)
+app.get('/api/auth/login', (req,res) => {
+  console.log('dick in face')
+  
+  res.status(200).json({
+    loggedIn: false
+  })
+})
+
+// app.get('/mcpoops', (req, res) => {
+//   res.status(200).json({
+//     loggedIn: false
+//   })
+// })
 
 app.listen(PORT, () => {
   console.log(`BucketLab Server is running on port ${PORT}`)
