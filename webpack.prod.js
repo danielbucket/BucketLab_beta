@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
 	devtool: 'source-map',
+  entry: './src/index.js',
 	optimization: {
 		splitChunks: {
 				chunks: 'all',

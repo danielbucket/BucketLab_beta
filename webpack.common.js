@@ -9,7 +9,6 @@ module.exports = (env) => {
 
   return merge(config, {
     mode: env.development ? 'development' : 'production',
-    entry: './src/index.js',
     output: {
       filename: 'main.[contenthash].js',
       path: path.resolve(__dirname, 'dist'),
@@ -19,7 +18,7 @@ module.exports = (env) => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        title: 'WP_React_Express_boilerplate',
+        title: 'BucketLab Beta',
         filename: 'index.html',
         template: path.resolve(__dirname, 'templates', 'template.hbs'),
         description: 'A boilerplate for a project using Webpack, React, and Express',
@@ -36,14 +35,7 @@ module.exports = (env) => {
             loader: 'babel-loader',
             options: {
               targets: "defaults",
-              presets: [
-                ["@babel/preset-env"],
-                ["@babel/preset-react"]
-              ],
-              plugins: [
-                ["@babel/transform-class-properties"],
-                ["@babel/plugin-transform-runtime"]
-              ]
+              presets: ["@babel/preset-react"]
             }
           }
         },

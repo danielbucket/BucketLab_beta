@@ -8,24 +8,24 @@ import { AppContainer } from './app.styled.js'
 
 export default function App() {
   const [user, setUser] = useState()
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState({})
   const userData = useLoaderData()
-  
-  // useEffect(() => {
-  //   if (userData.loggedIn) {
-  //     setUser(userData.user)
-  //     setLoggedIn(true)
-  //   } else {
-  //     setUser(() => {{}})
-  //     setLoggedIn(() => false)
-  //   }
-  // }, [])
+  console.log('userData: ', userData)
+
+  useEffect(() => {
+    if (userData.loggedIn) {
+      setUser(userData.user)
+      setLoggedIn(true)
+    } else {
+      setUser(() => {{}})
+      setLoggedIn(() => false)
+    }
+  }, [])
 
   return (
     <>
       <AppContainer >
-        {/* <Header loggedin={ loggedIn }/> */}
-        <Header />
+        <Header loggedin={ loggedIn }/>
         <Body />
         <Footer />
       </AppContainer>

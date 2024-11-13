@@ -6,22 +6,25 @@ const PORT = process.env.PORT || 4020
 const router = require('./routers/router.js')
 const authRouter = require('./routers/authRouter.js')
 
+if (process.env.NODE_ENV === 'development') {
+  const webpack = require('webpack')
+  const webpackConfig = require('../webpack.common.js')('development')
+  const compiler = webpack(webpackConfig)
 
-const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
-const config = require('../webpack.common.js')('development')
-const compiler = webpack(config)
+  app.use(require('webpack-dev-middleware')(compiler, {
+    publicPath: webpackConfig.output.publicPath
+  }))
+
+  app.use(require('webpack-hot-middleware')(compiler, {
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
+  }))
+}
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
-app.use(
-  webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath,
-  })
-)
-
 app.use(express.static(path.resolve(__dirname, '../dist')))
 
 app.use('/', (req,res) => {
@@ -30,10 +33,6 @@ app.use('/', (req,res) => {
 
 app.get('/api/v1', router)
 app.get('/api/auth', authRouter)
-
-app.get('/mcpoops', (req, res) => {
-  res.send('McShitty Poops')
-})
 
 app.listen(PORT, () => {
   console.log(`BucketLab Server is running on port ${PORT}`)

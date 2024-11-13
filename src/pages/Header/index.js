@@ -6,7 +6,7 @@ export default function Header({ loggedIn }) {
     <>
       <HeaderContainer>
         <h1>Header</h1>
-        {/* { loggedIn ? <p>Welcome, { loggedIn }</p> : <p>Please log in</p> } */}
+        { loggedIn ? <p>Welcome, { loggedIn }</p> : <p>Please log in</p> }
       </HeaderContainer>
     </>
   )
