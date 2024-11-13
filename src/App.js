@@ -9,7 +9,7 @@ import { AppContainer } from './app.styled.js'
 export default function App() {
   const [user, setUser] = useState()
   const [loggedIn, setLoggedIn] = useState(false)
-  // const userData = useLoaderData()
+  const userData = useLoaderData()
   
   // useEffect(() => {
   //   if (userData.loggedIn) {
@@ -24,6 +24,7 @@ export default function App() {
   return (
     <>
       <AppContainer >
+        {/* <Header loggedin={ loggedIn }/> */}
         <Header />
         <Body />
         <Footer />
