@@ -8,7 +8,7 @@ import { appRouter } from './appRouter'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <RouterProvider router={ appRouter }>
+    <RouterProvider router={ appRouter }   future={{ v7_startTransition: true }}>
       <App />
     </RouterProvider>
   </React.StrictMode>

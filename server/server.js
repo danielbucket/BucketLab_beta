@@ -2,27 +2,25 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const path = require('path')
-const PORT = process.env.PORT || 4020 // port 4020 is the devServer port found in webpack.dev.js
+const PORT = process.env.PORT || 4020
 const router = require('./routers/router.js')
 const authRouter = require('./routers/authRouter.js')
 
-if (process.env.NODE_ENV === 'development') {
-  const webpack = require('webpack')
-  const webpackDevMiddleware = require('webpack-dev-middleware')
-  const webpackHotMiddleware = require('webpack-hot-middleware')
-  const config = require('../webpack.common.js')('develpment')
-  const compiler = webpack(config)
 
-  app.use(webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath,
-    writeToDisk: true
-  }))
-  app.use(webpackHotMiddleware(compiler))
-}
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+const config = require('../webpack.common.js')('development')
+const compiler = webpack(config)
 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(
+  webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+  })
+)
 
 app.use(express.static(path.resolve(__dirname, '../dist')))
 
@@ -34,9 +32,9 @@ app.get('/api/v1', router)
 app.get('/api/auth', authRouter)
 
 app.get('/mcpoops', (req, res) => {
-  res.send('Poops McShitty')
+  res.send('McShitty Poops')
 })
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
+  console.log(`BucketLab Server is running on port ${PORT}`)
 })

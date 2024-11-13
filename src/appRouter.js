@@ -8,17 +8,11 @@ export const appRouter = createBrowserRouter([
     element: <App />,
     errorElement: <Error />,
     loader: async () => {
-      return await fetch('/api/auth/login')
-      .then(res => res.json())
-      .then(data => data)
-      .catch(err => console.error(err))
+      // return await fetch('/api/auth/login')
+      // .then(res => res.json())
+      // .then(data => data)
+      // .catch(err => console.error(err))
+      return { loggedIn: false }
     }
-  }
-],
-{
-  future: {
-    // Normalize `useNavigation()`/`useFetcher()` `formMethod` to uppercase
-    v7_normalizeFormMethod: true,
   },
-}
-)
+])
